@@ -91,24 +91,62 @@ describe 'Surfair qa' do
 	describe 'canceling the flight' do
 		it 'views all of your flights' do 
 			begin
+				# sleep 5
 				@wait.until { @driver.find_element(:link, 'Manage Flights')}
 			ensure
+				# sleep 5
 				element_manage_flight = @driver.find_element(:link, 'Manage Flights')
 				element_manage_flight.click
 			end
 		end
 		# expect to see all booked flights
 
-	# 	it 'show more options in iternary' do 
-	# 		begin
-	# 			@wait.until{@driver.find_element(:class, 'fa-chevrom-down')}
-	# 		ensure
-	# 			element_more = @driver.find_element(:class, 'fa-chevron-down')
-	# 			element_more.click
-	# 		end
-	# 	end
+		it 'cancels the flight' do
+			begin
+				# sleep 5
+				element_more = @driver.find_element(:class, 'fa-chevron-down')
+				element_more.click
+			ensure 
+				# sleep 5
+				element_cancel = @driver.find_elements(:class, 'button')
+				element_cancel.each do |t|
+					if t.text() == "Cancel This Flight"
+						t.click
+						puts "Found the cancel button"
+					else
+						puts t.text()
+					end
+				end
+			end
+		end
+
+		it 'confirm flight cancel' do
+			element_cancel = @driver.find_elements(:class, 'button')
+			element_cancel.each do |t|
+				if t.text() == 'Cancel Flight'
+					t.click
+					puts "Found the Confirm cancel buton"
+				else
+					puts t.text()
+				end
+			end
+		end
 	end
 
+	describe 'logout' do 
+		it 'logs out and closes browser ' do
+			begin
+				element_profile = @driver.find_element(:id, 'profile-menu')
+				element_profile.click
+				puts "Clicked on profile"
+			ensure
+				element_logout = @driver.find_element(:partial_link_text, 'Logout')
+				element_logout.click
+				# @driver.quit
+				puts "logged out"
+			end
+		end
+	end
 
 ### last end ###
 end

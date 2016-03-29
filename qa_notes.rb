@@ -108,9 +108,6 @@ ensure
 		if t.text() == "Cancel This Flight"
 			t.click
 			puts "found the cancel button"
-		# elsif
-		# 	sleep 3
-		# 	t.click
 		else
 			puts t.text()
 		end
