@@ -11,6 +11,10 @@ describe 'Surfair qa' do
 		@wait = Selenium::WebDriver::Wait.new(:timeout => 10) #seconds
 	end
 
+	after(:each) do 
+		sleep 10
+	end
+
 	describe 'login' do 
 		it 'signs me in' do 
 			element_username = @driver.find_element(:id, 'input_001').send_keys "jason+test@surfair.com"
@@ -82,22 +86,28 @@ describe 'Surfair qa' do
 			end
 		end
 		# expect flight to be booked
+	end
 
-		it 'views all of your flight' do 
+	describe 'canceling the flight' do
+		it 'views all of your flights' do 
 			begin
-				@wait.until {@driver.find_element(:link_text, 'Manage Flights')}
+				@wait.until { @driver.find_element(:link, 'Manage Flights')}
 			ensure
-				element_manage_flights = @driver.find_element(:link_text, 'Manage Flights')
-				element_manage_flights.click
+				element_manage_flight = @driver.find_element(:link, 'Manage Flights')
+				element_manage_flight.click
 			end
 		end
 		# expect to see all booked flights
 
+	# 	it 'show more options in iternary' do 
+	# 		begin
+	# 			@wait.until{@driver.find_element(:class, 'fa-chevrom-down')}
+	# 		ensure
+	# 			element_more = @driver.find_element(:class, 'fa-chevron-down')
+	# 			element_more.click
+	# 		end
+	# 	end
 	end
-
-	# describe 'canceling the flight' end
-	# 	it ''
-	# end
 
 
 ### last end ###
