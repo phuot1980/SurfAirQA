@@ -1,5 +1,4 @@
 require 'selenium-webdriver'
-require 'capybara'
 require 'rspec'
 
 describe 'SurfAir QA' do
