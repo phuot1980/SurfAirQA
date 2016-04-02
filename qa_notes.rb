@@ -8,9 +8,9 @@ require 'rspec'
 
 # signin to login page1
 element_email = @driver.find_element(:id, 'input_001')
-element_email.send_keys "jason+test@surfair.com"
+element_email.send_keys ""
 element_password = @driver.find_element(:id, 'input_002')
-element_password.send_keys "jason90401"
+element_password.send_keys ""
 @driver.find_element(:class, "button").click
 puts "Logged in succesful."
 

@@ -1,6 +1,7 @@
 require 'selenium-webdriver'
 require 'rspec'
 
+
 describe 'Surfair qa' do 
 	before(:all) do 
 		# create a webdriver driver
@@ -17,8 +18,8 @@ describe 'Surfair qa' do
 
 	describe 'login' do 
 		it 'signs me in' do 
-			element_username = @driver.find_element(:id, 'input_001').send_keys ""
-			element_password = @driver.find_element(:id, 'input_002').send_keys ""
+			element_username = @driver.find_element(:id, 'input_0').send_keys "jason+test@surfair.com"
+			element_password = @driver.find_element(:id, 'input_1').send_keys "surfair"
 			@driver.find_element(:class, 'button').click
 		end
 		# expect it to change to home page 
