@@ -140,7 +140,7 @@ describe 'Surfair qa' do
 			element_cancel.each do |t|
 				if t.text() == 'Cancel Flight'
 					t.click
-					puts t.text() && "Found the Confirm cancel buton"
+					puts "Found the Confirm cancel buton"
 				else
 					puts t.text()
 				end
