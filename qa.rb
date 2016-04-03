@@ -18,10 +18,9 @@ describe 'Surfair booking and canceling flight' do
 
 	describe 'login' do 
 		it 'signs me in' do 
-			element_username = @driver.find_element(:id, 'input_0').send_keys ""
-			element_password = @driver.find_element(:id, 'input_1').send_keys ""
+			element_username = @driver.find_element(:id, 'input_0').send_keys "jason+test@surfair.com"
+			element_password = @driver.find_element(:id, 'input_1').send_keys "surfair"
 			@driver.find_element(:class, 'button').click
-			# expect it to change to home page
 			expect(@driver.current_url).to eql("https://staging.surfair.com/app/#/")
 		end
 	end
@@ -34,7 +33,6 @@ describe 'Surfair booking and canceling flight' do
 				element_book = @driver.find_element(:link, 'Book a flight')
 				element_book.click
 			end
-			# expect it to click a book a flight link
 			expect(@driver.current_url).to eql("https://staging.surfair.com/app/#/book")
 		end
 
@@ -45,7 +43,6 @@ describe 'Surfair booking and canceling flight' do
 				element_depart = @driver.find_element(:partial_link_text, 'Hawthorne')
 				element_depart.click
 			end
-		# expect it to chose Hawthorne airport	
 		expect(@driver.current_url).to include("HHR")
 		end
 
@@ -56,7 +53,6 @@ describe 'Surfair booking and canceling flight' do
 				element_arrival = @driver.find_element(:partial_link_text, 'Oakland')
 				element_arrival.click
 			end
-		#expect it to chose Oakland airport
 		expect(@driver.current_url).to include("OAK")	
 		end
 	end
@@ -69,7 +65,6 @@ describe 'Surfair booking and canceling flight' do
 				element_next_month = @driver.find_element(:class, 'next')
 				element_next_month.click
 			end
-		# expect the calendar to move forward a month	
 		element_current_month = @driver.find_elements(:class, 'month')
 		element_current_month.each do |m|
 			 if m.text() == m.text()
@@ -99,7 +94,6 @@ describe 'Surfair booking and canceling flight' do
 				element_book = @driver.find_element(:class, 'button-book')
 				element_book.click
 			end
-			# expect flight to be booked
 			expect(@driver.current_url).to eql("https://staging.surfair.com/app/#/book?from=HHR&to=OAK&day=2016-05-13")
 		end
 	end
@@ -107,10 +101,8 @@ describe 'Surfair booking and canceling flight' do
 	describe 'canceling the flight' do
 		it 'views all of the booked flights' do 
 			begin
-				# sleep 5
 				@wait.until { @driver.find_element(:link, 'Manage Flights')}
 			ensure
-				# sleep 5
 				element_manage_flight = @driver.find_element(:link, 'Manage Flights')
 				element_manage_flight.click
 			end
@@ -151,7 +143,7 @@ describe 'Surfair booking and canceling flight' do
 	end
 
 	describe 'logout' do 
-		it 'logs out and closes browser ' do
+		it 'logout of profile' do
 			begin
 				element_profile = @driver.find_element(:id, 'profile-menu')
 				element_profile.click
@@ -159,7 +151,6 @@ describe 'Surfair booking and canceling flight' do
 			ensure
 				element_logout = @driver.find_element(:partial_link_text, 'Logout')
 				element_logout.click
-				@driver.quit
 				puts "logged out"
 			end
 			expect(@driver.current_url).to eql("https://staging.surfair.com/app/#/profile")
