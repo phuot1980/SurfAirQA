@@ -18,8 +18,8 @@ describe 'Surfair booking and canceling flight' do
 
 	describe 'login' do 
 		it 'signs me in' do 
-			element_username = @driver.find_element(:id, 'input_0').send_keys "jason+test@surfair.com"
-			element_password = @driver.find_element(:id, 'input_1').send_keys "surfair"
+			element_username = @driver.find_element(:id, 'input_0').send_keys ""
+			element_password = @driver.find_element(:id, 'input_1').send_keys ""
 			@driver.find_element(:class, 'button').click
 			expect(@driver.current_url).to eql("https://staging.surfair.com/app/#/")
 		end
@@ -132,7 +132,7 @@ describe 'Surfair booking and canceling flight' do
 			element_cancel.each do |t|
 				if t.text() == 'Cancel Flight'
 					t.click
-					puts  "Found the Confirm cancel buton"
+					puts  "Found the confirm cancel button"
 				else
 					puts t.text()
 				end
