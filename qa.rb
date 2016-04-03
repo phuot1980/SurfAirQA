@@ -2,7 +2,7 @@ require 'selenium-webdriver'
 require 'rspec'
 
 
-describe 'Surfair qa' do 
+describe 'Surfair booking and canceling flight' do 
 	before(:all) do 
 		# create a webdriver driver
 		@driver = Selenium::WebDriver.for:chrome
@@ -62,7 +62,7 @@ describe 'Surfair qa' do
 	end
 
 	describe 'chose a date for travel' do 
-		it 'moves the one month forward' do 
+		it 'chooses the next month' do 
 			begin
 				@wait.until{@driver.find_element(:class, 'next').displayed?}
 			ensure
@@ -105,7 +105,7 @@ describe 'Surfair qa' do
 	end
 
 	describe 'canceling the flight' do
-		it 'views all of your flights' do 
+		it 'views all of the booked flights' do 
 			begin
 				# sleep 5
 				@wait.until { @driver.find_element(:link, 'Manage Flights')}
@@ -140,7 +140,7 @@ describe 'Surfair qa' do
 			element_cancel.each do |t|
 				if t.text() == 'Cancel Flight'
 					t.click
-					puts "Found the Confirm cancel buton"
+					puts  "Found the Confirm cancel buton"
 				else
 					puts t.text()
 				end
@@ -159,7 +159,7 @@ describe 'Surfair qa' do
 			ensure
 				element_logout = @driver.find_element(:partial_link_text, 'Logout')
 				element_logout.click
-				# @driver.quit
+				@driver.quit
 				puts "logged out"
 			end
 			expect(@driver.current_url).to eql("https://staging.surfair.com/app/#/profile")
