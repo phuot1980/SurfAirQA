@@ -137,7 +137,6 @@ RSpec.describe 'Surfair booking and canceling flight' do
 			end
 			expect(@driver.current_url).to eql("https://staging.surfair.com/app/#/")
 		end
-	
 	end
 
 	describe 'logout' do 
