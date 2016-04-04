@@ -1,8 +1,7 @@
 require 'selenium-webdriver'
 require 'rspec'
 
-
-Rspec.describe 'Surfair booking and canceling flight' do 
+RSpec.describe 'Surfair booking and canceling flight' do 
 	before(:all) do 
 		# create a webdriver driver
 		@driver = Selenium::WebDriver.for:chrome
@@ -18,8 +17,8 @@ Rspec.describe 'Surfair booking and canceling flight' do
 
 	describe 'login' do 
 		it 'signs me in' do 
-			element_username = @driver.find_element(:id, 'input_0').send_keys "jason+test@surfair.com "
-			element_password = @driver.find_element(:id, 'input_1').send_keys "surfair"
+			element_username = @driver.find_element(:id, 'input_0').send_keys ""
+			element_password = @driver.find_element(:id, 'input_1').send_keys ""
 			@driver.find_element(:class, 'button').click
 			expect(@driver.current_url).to eql("https://staging.surfair.com/app/#/")
 		end
@@ -75,7 +74,6 @@ Rspec.describe 'Surfair booking and canceling flight' do
 		end
 		expect(@driver.current_url).to eql('https://staging.surfair.com/app/#/book?from=HHR&to=OAK')		
 		end
-
 
 		it 'chooses day 13' do 
 			begin
@@ -153,8 +151,12 @@ Rspec.describe 'Surfair booking and canceling flight' do
 				element_logout.click
 				puts "logged out"
 			end
-			@drive.quit
+			expect(@driver.current_url).to eql("https://staging.surfair.com/app/#/profile")
 		end
+	end
+
+	after(:all) do 
+		@driver.quit
 	end
 
 ### last end ###
