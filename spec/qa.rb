@@ -17,8 +17,8 @@ RSpec.describe 'Surfair booking and canceling flight' do
 
 	describe 'login' do 
 		it 'signs me in' do 
-			element_username = @driver.find_element(:id, 'input_0').send_keys "jason+test@surfair.com"
-			element_password = @driver.find_element(:id, 'input_1').send_keys "surfair"
+			element_username = @driver.find_element(:id, 'input_0').send_keys ""
+			element_password = @driver.find_element(:id, 'input_1').send_keys ""
 			@driver.find_element(:class, 'button').click
 			expect(@driver.current_url).to eql("https://staging.surfair.com/app/#/")
 		end
